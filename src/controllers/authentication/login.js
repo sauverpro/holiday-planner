@@ -20,19 +20,22 @@ import { generateToken,comparePassword } from "../../utils";
        let token = generateToken({
         _id : user._id
        })
-      let Auth = await res.setHeader('Authorization',`Bearer ${token}`)
-      if (!Auth) {
-       return res.status(400).json({
-          message :"failed to save token "
-        })
-      }
+      // let Auth = await res.setHeader('Authorization',`Bearer ${token}`)
+      req.headers.authorization = token
+      console.log("token", req.headers.authorization);
+      // if (!Auth) {
+      //  return res.status(400).json({
+      //     message :"failed to save token "
+      //   })
+      // }
         res.status(200).json({
              message: "Login Successfully",
          access_token : token,
          data:{
             fullname:user.FullNames,
             email: user.email,
-            role: user.Role
+            role: user.Role,
+            token : req.headers.authorization
          },
         });
     

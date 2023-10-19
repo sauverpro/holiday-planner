@@ -3,7 +3,6 @@ import  {hashPassword, comparePassword } from "../../utils";
 export const changePassword = async (req, res) => {
   try {
     const { currentPassword, NewPassword } = req.body;
-   
     const { userId } = req;
     console.log(userId)
    const users = await UserModel.findById(userId)

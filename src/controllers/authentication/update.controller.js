@@ -1,6 +1,4 @@
 import { UserModel } from "../../models";
-
-
 export const update = async(req, res) => {
     try {
         const updateId = req.params.paramid;

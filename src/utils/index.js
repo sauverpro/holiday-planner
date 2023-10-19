@@ -1,4 +1,4 @@
 export * from "./tokens.utils"
 export * from "./hashPassword"
 export * from "./cloudinary"
-export * from "./multer"
+export * from "../middleware/multer"

@@ -9,12 +9,13 @@ cloudinary.config({
 });
 export const addTour = async (req, res) => {
   try {
-    const image = await cloudinary.uploader.upload(req.file.path);
-    req.body.backdropImage = image.secure_url;
-    const tour = req.body
-    
-    // console.log("this is tour", tour);
-  let add = await tourModel.create(tour);
+    let galleryImage = []
+    let backdropImage = await cloudinary.uploader.upload(req.files["backdropImage"][0].path)
+    for (let index = 0; index < req.files.gallery.length; index++) {
+     galleryImage.push((await cloudinary.uploader.upload(req.files.gallery[index].path)).secure_url)
+    }
+    console.log(galleryImage);
+  let add = await tourModel.create({...req.body,backdropImage:backdropImage.secure_url, Gallery: galleryImage});
   if (!add) {
    return res.status(404).json({
       message : "failed to add tour"
@@ -22,7 +23,7 @@ export const addTour = async (req, res) => {
   }
   res.status(201).json({
       message : "Tour saved successfully",
-      data: tour
+      data: add
     })
   } catch (error) {
     console.log(error);

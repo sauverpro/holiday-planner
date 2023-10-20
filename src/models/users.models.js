@@ -5,7 +5,7 @@ const  mongoose = require("mongoose");
     email:{type: String},
     PhoneNumber:{type: String, required: true},
     Password:{type: String, required: true},
-    Location:{type: String, required: true},
-    Role: {type: String, required: true, default: "user"}
+    Location: String,
+    Role: {type: String, default: "user"}
 })
 export const UserModel = mongoose.model("users",userSchema)

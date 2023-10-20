@@ -1,7 +1,7 @@
 import { UserModel } from "../../models";
 export const update = async(req, res) => {
     try {
-        const updateId = req.params.paramid;
+        const updateId = req.params.id;
         const newData = req.body;
         const user = await UserModel.findByIdAndUpdate(updateId,newData)
         if (user) {

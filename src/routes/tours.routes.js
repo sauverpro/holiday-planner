@@ -7,7 +7,8 @@ const tourRoute = express.Router();
 
 tourRoute.delete('/delete-Tour/:id',verifyToken,isAdmin,deleteTour)
 tourRoute.patch('/update-Tour/:paramid',verifyToken,isAdmin,upload,updateTours)
-tourRoute.post('/addTour',upload,addTour)
+ 
+tourRoute.post('/addTour',verifyToken,isAdmin,upload,addTour)
 // tourRoute.post('/addTour',upload,uploadController)
 tourRoute.get('/',getTours)
 export default tourRoute

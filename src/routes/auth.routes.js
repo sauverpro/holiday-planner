@@ -132,17 +132,10 @@ AuthRouter.post("/login", loginUser);
 AuthRouter.get("/View-all-users", verifyToken, getData);
 /**
  * @swagger
- * /api/v1/auth/update/{id}:
+ * /api/v1/auth/update:
  *   patch:
  *      summary: Update user by ID
  *      tags: [Users]
- *      parameters:
- *         - in: path
- *           name: id
- *           schema: 
- *             type: string 
- *           required : true 
- *           description: the book ID
  *      requestBody: 
  *        required: true
  *        content: 
@@ -157,15 +150,15 @@ AuthRouter.get("/View-all-users", verifyToken, getData);
  *          content:
  *             application/json:
  *                schema: 
- *                  $ref:'#/components/schemas/Users'
- *        404:
- *          description : User not found
+ *                  type: array
+ *                  items:
+ *                   $ref: '#/components/schemas/Users'
  *        500:
  *          description: internal server error
  * 
  * 
  */ 
-AuthRouter.patch("/update/:id", verifyToken, isAdmin, update);
+AuthRouter.patch("/update", verifyToken, update);
 
 AuthRouter.delete("/Delete/:id", verifyToken, isAdmin, deleteUser);
 AuthRouter.post("/change-password", verifyToken, changePassword);

@@ -1,5 +1,5 @@
 import { UserModel } from "../../models";
-import { generateToken,hashPassword } from "../../utils";
+import { hashPassword } from "../../utils";
  export const RegisterUser = async(req,res)=>{
     try {
         let checkUser = await UserModel.findOne({ email: req.body.email });
@@ -9,14 +9,10 @@ import { generateToken,hashPassword } from "../../utils";
         let hash = await hashPassword(req.body.Password);
         req.body.Password = hash;
         let newUser = await UserModel.create(req.body);
-        console.log("new User", newUser);
-        let token = generateToken({
-          _id: newUser._id
-        });
+       
     
         res.status(200).json({
           message: "User registered successfully",
-          access_token: token,
           data: {
             email: newUser.email,
             fullName: newUser.FullNames,

@@ -28,11 +28,11 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:5000",
-      }, 
-      {
         url: "https://events-planner.onrender.com",
       },
+      {
+        url: "http://localhost:5000",
+      }, 
     ],
   },
   apis: ["./src/routes/*.js"],

@@ -2,6 +2,7 @@ import express from "express";
 import {
   addTour,
   deleteTour,
+  getByIdTour,
   getTours,
   updateTour,
   updateTours,
@@ -148,6 +149,33 @@ tourRoute.post("/addTour", verifyToken, isAdmin, upload, addTour);
  *                          $ref: '#/components/schemas/Tour'
  */
 tourRoute.get("/", getTours);
+
+/**
+ * @swagger
+ * /api/v1/Tours/{tourID}:
+ *  get:
+ *    summary: returns all registered users
+ *    tags: [Tours]
+ *    parameters:
+ *        - in: path
+ *          name: tourID
+ *          required: true
+ *          schema: 
+ *            type: string
+ *            description: Id of tour to be retrieved
+ *    responses:
+ *        200:
+ *          description: the list of all users
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                     schema:
+ *                         type: array
+ *                         items:
+ *                          $ref: '#/components/schemas/Tour'
+ */
+tourRoute.get('/:tourID',getByIdTour)
+
 
 /**
  * @swagger

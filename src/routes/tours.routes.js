@@ -154,7 +154,7 @@ tourRoute.get("/", getTours);
  * @swagger
  * /api/v1/Tours/{tourID}:
  *  get:
- *    summary: returns all registered users
+ *    summary: returns single tour details
  *    tags: [Tours]
  *    parameters:
  *        - in: path
@@ -173,6 +173,11 @@ tourRoute.get("/", getTours);
  *                         type: array
  *                         items:
  *                          $ref: '#/components/schemas/Tour'
+ *        404:
+ *          description: tour doesn't found 
+ *        500:
+ *          description: internal server error
+ *       
  */
 tourRoute.get('/:tourID',getByIdTour)
 

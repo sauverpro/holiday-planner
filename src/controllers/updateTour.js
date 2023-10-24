@@ -9,7 +9,7 @@ cloudinary.config({
 });
 export const updateTour = async (req, res) => {
   try {
-    const updateId = req.params.paramid;
+    const updateId = req.params.tourID;
     const image = await cloudinary.uploader.upload(req.file.path);
     req.body.backdropImage = image.secure_url;
     const tour = req.body

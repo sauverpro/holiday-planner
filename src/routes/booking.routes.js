@@ -1,6 +1,6 @@
 import express from "express";
-import { Booking } from "../controllers/booking";
-import { verifyToken } from "../middleware";
+import { Booking, getBookings } from "../controllers/booking";
+import { isAdmin, verifyToken } from "../middleware";
 
 const bookingRoute = express.Router();
 /**
@@ -24,6 +24,7 @@ const bookingRoute = express.Router();
  *  name: Booking
  *  description: Booking tour API
  */
+
 /**
  * @swagger
  * /api/v1/booking/book:
@@ -51,5 +52,27 @@ const bookingRoute = express.Router();
  */ 
 
 bookingRoute.post("/book", verifyToken, Booking);
+
+/**
+ * @swagger
+ * /api/v1/booking:
+ *  get:
+ *    summary: -Returns all Bookings
+ *    tags: [Booking]
+ *    security:
+ *      - bearerAuth: []
+ *    responses:
+ *        200:
+ *          description: the list of all bookings
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                     schema:
+ *                         type: array
+ *                         items:
+ *                          $ref: '#/components/schemas/Booking'
+ */
+
+bookingRoute.get("/", verifyToken,isAdmin, getBookings);
 
 export default bookingRoute;

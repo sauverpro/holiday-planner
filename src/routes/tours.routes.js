@@ -135,7 +135,7 @@ tourRoute.post("/addTour", verifyToken, isAdmin, upload, addTour);
  * @swagger
  * /api/v1/Tours:
  *  get:
- *    summary: returns all registered users
+ *    summary: -Returns all registered tours
  *    tags: [Tours]
  *    responses:
  *        200:
@@ -154,7 +154,7 @@ tourRoute.get("/", getTours);
  * @swagger
  * /api/v1/Tours/{tourID}:
  *  get:
- *    summary: returns single tour details
+ *    summary: -Returns single tour details
  *    tags: [Tours]
  *    parameters:
  *        - in: path

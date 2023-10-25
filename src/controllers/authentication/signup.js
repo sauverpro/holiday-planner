@@ -2,11 +2,11 @@ import { UserModel } from "../../models";
 import { hashPassword, transporter, varidate } from "../../utils";
 export const RegisterUser = async (req, res) => {
   try {
-    let {valid} = await varidate(req.body.email);
-    if (valid === false) {
-      console.log("validate",valid);
-      return res.json({ message: "please provide a valid email" });
-    }
+    // let {valid} = await varidate(req.body.email);
+    // if (valid === false) {
+    //   console.log("validate",valid);
+    //   return res.json({ message: "please provide a valid email" });
+    // }
     let checkUser = await UserModel.findOne({ email: req.body.email });
     if (checkUser) {
       return res.status(409).json({ message: "email already exist" });

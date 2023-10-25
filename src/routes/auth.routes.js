@@ -159,7 +159,28 @@ AuthRouter.get("/View-all-users", verifyToken, getData);
  * 
  */ 
 AuthRouter.patch("/update", verifyToken, update);
-
+/**
+ * @swagger
+ * /api/v1/auth/Delete/{id}:
+ *  delete: 
+ *    tags: [Users]
+ *    summary: Delete tour by ID
+ *    security:
+ *      - bearerAuth: []
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        required:  true
+ *        schema:
+ *         type: string
+ *         description: Id of  tour to be deleted
+ *    responses:
+ *      200:
+ *        description: tour deleted successfully
+ *      404:
+ *        description: failed to deleted tour
+ * 
+ */ 
 AuthRouter.delete("/Delete/:id", verifyToken, isAdmin, deleteUser);
 AuthRouter.post("/change-password", verifyToken, changePassword);
 

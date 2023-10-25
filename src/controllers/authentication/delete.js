@@ -9,9 +9,8 @@ export const deleteUser = async(req, res) => {
         // Use filter() to remove item with the specified ID from the database array
         let data = await UserModel.findByIdAndDelete({ _id: id });
        
-            if (!data) {
-                res.status(404).json({message:"failed to delete User"})
-                console.log('User deleted successfully:', data); 
+            if (!data) { 
+               return res.status(404).json({message:"User not found"})
               }
               res.status(200).json({message:'User deleted successfully:', data : data})
                 console.log('User deleted successfully:', data); 

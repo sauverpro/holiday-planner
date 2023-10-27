@@ -1,5 +1,5 @@
 import express from "express";
-import { Booking, getBookings } from "../controllers/booking";
+import { Booking, getBookings, getUserBookings } from "../controllers/booking";
 import { isAdmin, verifyToken } from "../middleware";
 
 const bookingRoute = express.Router();
@@ -74,5 +74,25 @@ bookingRoute.post("/book", verifyToken, Booking);
  */
 
 bookingRoute.get("/", verifyToken,isAdmin, getBookings);
+/**
+ * @swagger
+ * /api/v1/booking/myBookings:
+ *  get:
+ *    summary: -Returns all Bookings of single user
+ *    tags: [Booking]
+ *    security:
+ *      - bearerAuth: []
+ *    responses:
+ *        200:
+ *          description: the list of all single user bookings
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                     schema:
+ *                         type: array
+ *                         items:
+ *                          $ref: '#/components/schemas/Booking'
+ */
+bookingRoute.get("/myBookings", verifyToken, getUserBookings);
 
 export default bookingRoute;

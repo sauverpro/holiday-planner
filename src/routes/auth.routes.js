@@ -3,6 +3,7 @@ import {
   changePassword,
   deleteUser,
   getData,
+  getUserById,
   loginUser,
   update,
 } from "../controllers/authentication";
@@ -130,6 +131,43 @@ AuthRouter.post("/login", loginUser);
  *                          $ref: '#/components/schemas/Users'
  */
 AuthRouter.get("/View-all-users", verifyToken, getData);
+
+/**
+ * @swagger
+ * /api/v1/auth/User/{UserId}:
+ *  get:
+ *    summary: -Returns single user details
+ *    tags: [Users]
+ *    security:
+ *      - bearerAuth: []
+ *    parameters:
+ *        - in: path
+ *          name: UserId
+ *          required: true
+ *          schema: 
+ *            type: string
+ *            description: Id of user to be retrieved
+ *    responses:
+ *        200:
+ *          description: User details
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                     schema:
+ *                         type: array
+ *                         items:
+ *                          $ref: '#/components/schemas/Users'
+ *        404:
+ *          description: User doesn't found 
+ *        500:
+ *          description: internal server error
+ *       
+ */
+
+
+AuthRouter.get("/User/:UserId", verifyToken, getUserById);
+
+
 /**
  * @swagger
  * /api/v1/auth/update:
@@ -158,6 +196,7 @@ AuthRouter.get("/View-all-users", verifyToken, getData);
  * 
  * 
  */ 
+
 AuthRouter.patch("/update", verifyToken, update);
 /**
  * @swagger

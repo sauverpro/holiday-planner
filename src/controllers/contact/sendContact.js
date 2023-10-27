@@ -1,4 +1,4 @@
-import { contactModel } from "../models"
+import { contactModel } from "../../models"
 
 export const sendContact = async (req,res)=>{
     try {
@@ -14,7 +14,7 @@ export const sendContact = async (req,res)=>{
     })
     } catch (error) {
         console.log("error", error);
-        res.status(500).jason({
+        res.status(500).json({
             message: "internal server error"
         })
     }

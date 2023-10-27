@@ -179,6 +179,7 @@ tourRoute.get("/", getTours);
  *          description: internal server error
  *       
  */
+
 tourRoute.get('/:tourID',getByIdTour)
 
 
@@ -275,7 +276,7 @@ tourRoute.patch(
  *    parameters:
  *      - in: path
  *        name: id
- *        required:  true
+ *        required: true
  *        schema:
  *         type: string
  *         description: Id of  tour to be deleted

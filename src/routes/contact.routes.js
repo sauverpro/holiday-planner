@@ -1,10 +1,10 @@
 import express from "express"
-import { sendContact } from "../contact"
+import { sendContact } from "../controllers/contact"
 const contactRouter = express.Router()
 /**
  * @swagger
  * components:
- *   schemas:
+ *    schemas:
  *      Contact:
  *         type: object
  *         properties:
@@ -21,7 +21,7 @@ const contactRouter = express.Router()
 
 /**
  * @swagger
- * tags
+ * tags:
  *  name: Contact
  *  description: contact endpoints
  * 

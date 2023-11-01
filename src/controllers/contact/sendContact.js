@@ -1,4 +1,5 @@
 import { contactModel } from "../../models"
+import { transporter } from "../../utils"
 
 export const sendContact = async (req,res)=>{
     try {
@@ -9,9 +10,27 @@ export const sendContact = async (req,res)=>{
             message: "failed to send contact"
         })
     }
-    res.status(201).json({
-        message : "thanks for contacting us we'll replay ASAP"
-    })
+    // Email configuration
+    const mailOptions = {
+        from: "sauveur.dev@gmail.com",
+        to: body.email,
+        subject: `Holyday Planer platform`,
+        text: `Hello Dear,\n Thank you for contacting us, we'll reply to you soon..`,
+      };
+      console.log(mailOptions);
+      await transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error(error);
+          res.json({ success: false });
+        }
+        console.log("Email sent: " + info);
+  
+        res.status(201).json({
+          message: "Form submitted successfully",
+          success: true,
+          data: info
+        });
+      });
     } catch (error) {
         console.log("error", error);
         res.status(500).json({

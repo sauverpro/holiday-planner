@@ -1,5 +1,5 @@
 import express from "express"
-import { getContacts, sendContact } from "../controllers/contact"
+import { getContacts, reply, sendContact } from "../controllers/contact"
 import { isAdmin, verifyToken } from "../middleware"
 const contactRouter = express.Router()
 /**
@@ -79,5 +79,45 @@ contactRouter.post('/',sendContact)
  * 
  */ 
 contactRouter.get('/contacts',verifyToken,isAdmin,getContacts)
+
+/**
+ * @swagger
+ * /api/v1/contact/reply/{contactId}:
+ *  post:
+ *    summary: reply to contact
+ *    tags: [Contact]
+ *    security:
+ *      - bearerAuth: []
+ *    parameters:
+ *      - in: path
+ *        name: contactId
+ *        required: true
+ *        schema: 
+ *          type: string
+ *          description: iD of contact to be replied
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              subject:
+ *                type: string
+ *              message:
+ *                type: string
+ *    responses:
+ *      201:
+ *        description: You have Replied Successfully
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Contact'
+ *      500:
+ *        description: internal server error
+ *
+ */
+
+contactRouter.post('/reply/:contactId',verifyToken,isAdmin,reply)
 
 export default contactRouter

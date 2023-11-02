@@ -13,6 +13,12 @@ const bookingRoute = express.Router();
  *             tourId:
  *               type: string
  *               description: tour's registered ID
+ *             Date:
+ *               type: string
+ *               description: date
+ *             tickets:
+ *               type: string
+ *               description: number of tickects
  *             paymentMethod:
  *               type: string
  *               description: User's Payment Method

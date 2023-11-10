@@ -1,5 +1,5 @@
 import express from "express";
-import { Booking, getBookings, getUserBookings } from "../controllers/booking";
+import { Booking, bookingCount, getBookings, getBookingsCount, getUserBookings } from "../controllers/booking";
 import { isAdmin, verifyToken } from "../middleware";
 
 const bookingRoute = express.Router();
@@ -100,5 +100,7 @@ bookingRoute.get("/", verifyToken,isAdmin, getBookings);
  *                          $ref: '#/components/schemas/Booking'
  */
 bookingRoute.get("/myBookings", verifyToken, getUserBookings);
+bookingRoute.get("/Bookings/", bookingCount);
+bookingRoute.get("/countBookings/", getBookingsCount);
 
 export default bookingRoute;

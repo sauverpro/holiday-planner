@@ -8,7 +8,12 @@ import {
   updateTours,
   uploadController,
 } from "../controllers";
-import { uploads, uploadMany, verifyToken, isAdmin } from "../middleware";
+import {
+  uploads,
+  uploadMany,
+  verifyToken,
+  isAdmin,
+} from "../middleware";
 import upload from "../middleware/multer.js";
 const tourRoute = express.Router();
 // ................
@@ -62,7 +67,6 @@ const tourRoute = express.Router();
  *  name: Tours
  *  description: The Tours managing API's
  */
-
 
 /**
  * @swagger
@@ -160,7 +164,7 @@ tourRoute.get("/", getTours);
  *        - in: path
  *          name: tourID
  *          required: true
- *          schema: 
+ *          schema:
  *            type: string
  *            description: Id of tour to be retrieved
  *    responses:
@@ -174,14 +178,13 @@ tourRoute.get("/", getTours);
  *                         items:
  *                          $ref: '#/components/schemas/Tour'
  *        404:
- *          description: tour doesn't found 
+ *          description: tour doesn't found
  *        500:
  *          description: internal server error
- *       
+ *
  */
 
-tourRoute.get('/:tourID',getByIdTour)
-
+tourRoute.get("/:tourID", getByIdTour);
 
 /**
  * @swagger
@@ -264,11 +267,10 @@ tourRoute.patch(
 );
 // tourRoute.post('/addTour',upload,uploadController)
 
-
 /**
  * @swagger
  * /api/v1/Tours/delete-Tour/{id}:
- *  delete: 
+ *  delete:
  *    tags: [Tours]
  *    summary: Delete tour by ID
  *    security:
@@ -285,8 +287,8 @@ tourRoute.patch(
  *        description: tour deleted successfully
  *      404:
  *        description: failed to deleted tour
- * 
- */ 
+ *
+ */
 tourRoute.delete("/delete-Tour/:id", verifyToken, isAdmin, deleteTour);
 
 export default tourRoute;
